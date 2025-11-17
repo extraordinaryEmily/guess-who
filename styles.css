@@ -1,0 +1,451 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+}
+
+/* Upload Section */
+.upload-section {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.upload-section h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 40px;
+}
+
+.upload-area {
+    position: relative;
+    border: 3px dashed #cbd5e0;
+    border-radius: 15px;
+    padding: 40px 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f7fafc;
+}
+
+.upload-area:hover {
+    border-color: #667eea;
+    background: #edf2f7;
+    transform: translateY(-2px);
+}
+
+.upload-area.dragover {
+    border-color: #667eea;
+    background: #e6f0ff;
+}
+
+.upload-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 15px;
+    color: #667eea;
+}
+
+.upload-text {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.upload-hint {
+    color: #888;
+    font-size: 0.95em;
+}
+
+#file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Roster Buttons */
+.roster-buttons {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.roster-label {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.roster-btn-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.roster-btn {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+}
+
+.roster-btn:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.roster-btn:active {
+    transform: translateY(0);
+}
+
+.roster-icon {
+    font-size: 1.2em;
+}
+
+.preview-section {
+    margin-top: 30px;
+}
+
+.preview-count {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.preview-count span {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.3em;
+}
+
+.btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 16px 48px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Game Section */
+.game-section {
+    position: relative;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.game-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 3.5em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.logo-question {
+    font-size: 1.2em;
+    color: #ffd700;
+    text-shadow: 
+        3px 3px 0 #ff3f9e,
+        -2px -2px 0 #667eea,
+        2px -2px 0 #667eea,
+        -2px 2px 0 #667eea;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.logo-text {
+    color: #ffffff;
+    text-shadow: 
+        3px 3px 0 #ff3f9e,
+        6px 6px 0 #764ba2,
+        9px 9px 0 rgba(0, 0, 0, 0.15);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+}
+
+.game-board-container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.btn-new-game {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 12px 24px;
+    font-size: 0.95em;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    opacity: 0.7;
+}
+
+.btn-new-game:hover {
+    opacity: 1;
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* Game Board */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    gap: 20px;
+    animation: slideUp 0.6s ease-out;
+    justify-content: center;
+}
+
+.picture-frame {
+    position: relative;
+    aspect-ratio: 3/4;
+    border: 8px solid #2d3748;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.picture-frame::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid #cbd5e0;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+.picture-frame:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.picture-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    transition: all 0.3s ease;
+}
+
+.picture-frame.flipped img {
+    opacity: 0.2;
+    filter: grayscale(100%);
+}
+
+.picture-frame.flipped::after {
+    content: '✕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    color: #e53e3e;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Utilities */
+.hidden {
+    display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .upload-section {
+        padding: 40px 20px;
+    }
+
+    .upload-section h1 {
+        font-size: 2em;
+    }
+
+    .roster-btn {
+        padding: 10px 18px;
+        font-size: 0.9em;
+    }
+
+    .roster-btn-group {
+        gap: 10px;
+    }
+
+    .game-logo {
+        font-size: 2em;
+        gap: 10px;
+    }
+
+    .game-board-container {
+        padding: 30px 20px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(auto-fit, 160px);
+        gap: 15px;
+    }
+
+    .btn-new-game {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .roster-btn {
+        padding: 8px 16px;
+        font-size: 0.85em;
+        gap: 6px;
+    }
+
+    .roster-icon {
+        font-size: 1.1em;
+    }
+
+    .game-logo {
+        font-size: 1.5em;
+        gap: 8px;
+    }
+
+    .game-board-container {
+        padding: 20px 15px;
+    }
+
+    .game-board {
+        grid-template-columns: repeat(auto-fit, 130px);
+        gap: 12px;
+    }
+
+    .picture-frame {
+        border-width: 6px;
+    }
+
+    .btn-new-game {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 16px;
+        font-size: 0.85em;
+    }
+}
+

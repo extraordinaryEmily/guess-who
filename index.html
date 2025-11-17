@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Who</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Upload Section -->
+        <div id="upload-section" class="upload-section">
+            <h1>Guess Who</h1>
+            <p class="subtitle">Upload your images to create the game board</p>
+            
+            <div class="upload-area" id="upload-area">
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <p class="upload-text">Click to upload or drag and drop</p>
+                <p class="upload-hint">Select multiple images</p>
+                <input type="file" id="file-input" multiple accept="image/*">
+            </div>
+
+            <div class="roster-buttons">
+                <p class="roster-label">Or try a default roster:</p>
+                <div class="roster-btn-group">
+                    <button class="roster-btn" data-roster="genshin">
+                        <span class="roster-icon">🎮</span>
+                        Genshin
+                    </button>
+                    <button class="roster-btn" data-roster="harry-potter">
+                        <span class="roster-icon">⚡</span>
+                        Harry Potter
+                    </button>
+                    <button class="roster-btn" data-roster="furniture">
+                        <span class="roster-icon">🪑</span>
+                        Furniture
+                    </button>
+                </div>
+            </div>
+
+            <div id="preview-section" class="preview-section">
+                <p class="preview-count"><span id="file-count">0</span> images selected</p>
+                <button id="start-game-btn" class="btn">Create Game Board</button>
+            </div>
+        </div>
+
+        <!-- Game Board Section -->
+        <div id="game-section" class="game-section hidden">
+            <div class="logo-container">
+                <h1 class="game-logo">
+                    <span class="logo-question">?</span>
+                    <span class="logo-text">Guess Who</span>
+                    <span class="logo-question">?</span>
+                </h1>
+            </div>
+            <div class="game-board-container">
+                <div id="game-board" class="game-board"></div>
+            </div>
+            <button id="new-game-btn" class="btn-new-game">↻ New Game</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
