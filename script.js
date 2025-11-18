@@ -1,5 +1,6 @@
 // State management
 let uploadedImages = [];
+let DEFAULT_ROSTERS = {};
 
 // DOM elements
 const uploadSection = document.getElementById('upload-section');
@@ -11,15 +12,24 @@ const startGameBtn = document.getElementById('start-game-btn');
 const newGameBtn = document.getElementById('new-game-btn');
 const gameBoard = document.getElementById('game-board');
 
-// Default roster configurations
-const DEFAULT_ROSTERS = {
-    'genshin': 'default-rosters/genshin',
-    'harry-potter': 'default-rosters/harry-potter',
-    'furniture': 'default-rosters/furniture'
-};
+// Load roster manifest
+async function loadRosterManifest() {
+    try {
+        const response = await fetch('rosters.json');
+        if (response.ok) {
+            DEFAULT_ROSTERS = await response.json();
+            console.log('Loaded rosters:', Object.keys(DEFAULT_ROSTERS));
+        } else {
+            console.warn('Could not load rosters.json. Run "node generate-rosters.js" to create it.');
+        }
+    } catch (error) {
+        console.warn('Could not load rosters.json:', error.message);
+    }
+}
 
 // Initialize
 function init() {
+    loadRosterManifest();
     setupEventListeners();
     updateStartButton();
 }
@@ -188,40 +198,20 @@ function toggleFrame(index) {
 
 // Load default roster
 async function loadDefaultRoster(rosterName) {
-    const rosterPath = DEFAULT_ROSTERS[rosterName];
+    const roster = DEFAULT_ROSTERS[rosterName];
+    
+    if (!roster || !roster.images || roster.images.length === 0) {
+        alert(`No images found in the ${rosterName} roster yet. Please add images to the default-rosters/${rosterName}/ folder and run "node generate-rosters.js" to update the manifest.`);
+        return;
+    }
     
     try {
         // Clear any existing images
         uploadedImages = [];
         
-        // Fetch the list of images in the roster directory
-        const response = await fetch(rosterPath);
-        
-        if (!response.ok) {
-            console.warn(`Could not load roster: ${rosterName}. Make sure images exist in ${rosterPath}/`);
-            alert(`No images found in the ${rosterName} roster yet. Please add images to the ${rosterPath}/ folder.`);
-            return;
-        }
-        
-        // Parse the HTML to find image files
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const links = Array.from(doc.querySelectorAll('a'));
-        
-        // Filter for image files
-        const imageFiles = links
-            .map(link => link.getAttribute('href'))
-            .filter(href => href && /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(href));
-        
-        if (imageFiles.length === 0) {
-            alert(`No images found in the ${rosterName} roster yet. Please add images to the ${rosterPath}/ folder.`);
-            return;
-        }
-        
         // Load each image
-        for (const imageFile of imageFiles) {
-            const imagePath = `${rosterPath}/${imageFile}`;
+        for (const imageFile of roster.images) {
+            const imagePath = `${roster.path}/${imageFile}`;
             await loadImageFromUrl(imagePath);
         }
         
@@ -230,7 +220,7 @@ async function loadDefaultRoster(rosterName) {
         
     } catch (error) {
         console.error('Error loading default roster:', error);
-        alert(`Could not load the ${rosterName} roster. Make sure images are placed in the ${rosterPath}/ folder.`);
+        alert(`Could not load the ${rosterName} roster. Error: ${error.message}`);
     }
 }
 
