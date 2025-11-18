@@ -1,0 +1,24 @@
+{
+  "furniture": {
+    "path": "default-rosters/furniture",
+    "images": []
+  },
+  "genshin": {
+    "path": "default-rosters/genshin",
+    "images": [
+      "test1.svg",
+      "test2.svg",
+      "test3.svg",
+      "test4.svg",
+      "test5.svg",
+      "test6.svg",
+      "test7.svg",
+      "test8.svg",
+      "test9.svg"
+    ]
+  },
+  "harry-potter": {
+    "path": "default-rosters/harry-potter",
+    "images": []
+  }
+}
