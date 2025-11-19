@@ -55,33 +55,40 @@ Then open your browser to `http://localhost:8000`
 
 ## Default Rosters
 
-The app includes three pre-configured roster themes. To use them:
+The app includes three pre-configured roster themes. To add images to a roster:
 
-1. Add image files to the corresponding directory:
+1. **Add image files** to the corresponding directory:
    - `default-rosters/genshin/` - For Genshin Impact characters
    - `default-rosters/harry-potter/` - For Harry Potter characters
    - `default-rosters/furniture/` - For furniture items
+   
+   Supported formats: JPG, PNG, GIF, WebP, SVG
 
-2. Simply place image files (JPG, PNG, GIF, WebP, SVG) in the appropriate folder
+2. **Generate the manifest** by running:
+   ```bash
+   node generate-rosters.js
+   ```
+   This automatically scans all roster folders and creates/updates `rosters.json`
 
-3. Click the corresponding button on the main page to load that roster
+3. **Commit both** the images and `rosters.json` to your repository
 
-**Example:**
+4. Users can then click the corresponding button on the main page to load that roster
+
+**Example workflow:**
+```bash
+# Add your images
+cp my-images/*.png default-rosters/genshin/
+
+# Generate the manifest
+node generate-rosters.js
+
+# Commit everything
+git add default-rosters/ rosters.json
+git commit -m "Add Genshin roster images"
+git push
 ```
-default-rosters/
-  genshin/
-    character1.png
-    character2.png
-    character3.png
-  harry-potter/
-    harry.jpg
-    hermione.jpg
-    ron.jpg
-  furniture/
-    chair.png
-    table.png
-    sofa.png
-```
+
+**Note:** You never need to manually edit the image list - the `generate-rosters.js` script automatically discovers all images!
 
 ## Files
 
@@ -89,6 +96,8 @@ default-rosters/
 - `styles.css` - All styling and animations
 - `script.js` - Image upload and game logic
 - `default-rosters/` - Folder for default roster images
+- `generate-rosters.js` - Script to auto-generate roster manifest
+- `rosters.json` - Auto-generated list of all roster images
 - `README.md` - This file
 
 ## Browser Support
